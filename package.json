@@ -1,0 +1,1 @@
+{"name":"oddscope","version":"1.0.0","private":true,"description":"Explorador deportivo con escenarios de demostración","scripts":{"dev":"node server.mjs","check":"node --check dist/app.js","test":"node validate.mjs"}}
