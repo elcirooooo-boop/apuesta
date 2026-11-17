@@ -1,8 +1,23 @@
 import http from 'node:http';
+import {createTriunfoConnector} from './triunfobet-source.mjs';
 import {readFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
+import {SourceError} from './source-error.mjs';
 const root=fileURLToPath(new URL('./dist/',import.meta.url));
-const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8'};
-const server=http.createServer(async(req,res)=>{try{const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);const file=path.resolve(root,pathname==='/'?'index.html':'.'+pathname);if(!file.startsWith(root)){res.writeHead(403);return res.end();}const data=await readFile(file);res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','Cache-Control':'no-cache'});res.end(data);}catch{res.writeHead(404);res.end('Not found');}});
+const triunfo=createTriunfoConnector();
+process.once('SIGINT',async()=>{await triunfo.close();process.exit(0);});
+process.once('SIGTERM',async()=>{await triunfo.close();process.exit(0);});
+const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8'};
+const json=(res,status,data)=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(data));};
+const server=http.createServer(async(req,res)=>{try{
+ if(req.method!=='GET')return json(res,405,{message:'Método no permitido.'});
+ const url=new URL(req.url,'http://localhost');const pathname=decodeURIComponent(url.pathname);
+ if(pathname==='/api/triunfobet/status')return json(res,200,await triunfo.status());
+ if(pathname==='/api/triunfobet/matches')return json(res,200,await triunfo.matches(url.searchParams.get('sport')||'football',url.searchParams.get('league')||'all',url.searchParams.get('date')||''));
+ if(pathname==='/api/triunfobet/probabilities')return json(res,200,await triunfo.probabilities(url.searchParams.get('id')||''));
+ if(pathname.startsWith('/api/'))return json(res,404,{message:'Ruta no disponible.'});
+ const file=path.resolve(root,pathname==='/'?'index.html':'.'+pathname);const relative=path.relative(root,file);if(relative.startsWith('..')||path.isAbsolute(relative))return json(res,403,{message:'Ruta no permitida.'});
+ const data=await readFile(file);res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','Cache-Control':'no-cache','X-Content-Type-Options':'nosniff'});res.end(data);
+ }catch(error){if(error instanceof SourceError)return json(res,error.status,{message:error.message});return json(res,404,{message:'Recurso no disponible.'});}});
 server.listen(4173,'127.0.0.1',()=>console.log('Local: http://127.0.0.1:4173'));

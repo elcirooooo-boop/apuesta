@@ -1,0 +1,82 @@
+/* Layout shared by the agenda, methodology and match detail. */
+.app-shell,main,.page-heading>div,.toolbar>*,.real-fixture>*,.drawer>*{min-width:0}
+.sidebar{height:100vh;height:100dvh;padding-top:clamp(16px,3vh,32px);overflow-y:auto;overscroll-behavior:contain}
+.sidebar>.brand,.sidebar>.workspace,.sidebar>nav:not(.sport-nav),.sidebar>.nav-label,.sidebar-bottom{flex-shrink:0}
+.sidebar>.sport-nav{flex:1;min-height:80px!important}
+.brand{padding-bottom:20px}.workspace{margin-bottom:20px}
+.app-shell{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+main{width:100%;flex:1}footer{margin-top:auto}
+.toolbar>select{flex:0 1 240px;min-width:0;text-overflow:ellipsis}
+.toolbar .search{flex:1 1 220px;min-width:0}
+.toolbar .secondary-button{flex-shrink:0;justify-content:center}
+.real-fixture{grid-template-columns:28px 44px minmax(0,1fr) 36px 90px minmax(150px,180px)}
+.real-fixture>div:nth-child(3){overflow-wrap:anywhere;line-height:1.7}
+.real-fixture .star-button{min-height:44px;justify-content:center}
+.real-fixture .mini-forecast{min-width:0;width:100%;min-height:54px}
+.league-heading{gap:8px;overflow-wrap:anywhere}.league-count{flex-shrink:0}
+.drawer{max-width:100vw;height:100vh;height:100dvh;overscroll-behavior:contain;padding-bottom:max(30px,env(safe-area-inset-bottom))}
+.drawer h2{overflow-wrap:anywhere;padding-right:35px}
+.drawer-close{width:44px;height:44px;position:sticky;top:0;z-index:5}
+.drawer-toolbar{top:0;flex-wrap:wrap}
+.drawer-toolbar .search{flex:1 1 220px;min-width:0}
+.drawer-toolbar select{flex:1 1 180px;min-width:0;max-width:100%;text-overflow:ellipsis;min-height:40px}
+.market-group h3{gap:10px;flex-wrap:wrap;overflow-wrap:anywhere;line-height:1.6}
+.forecast-row>span:first-child,.data-stat-row>span,.forecast-method,.drawer-meta{overflow-wrap:anywhere}
+.market-categories .chip{min-height:36px}
+.settings-row{flex-wrap:wrap}.settings-row select{max-width:100%;min-width:0}
+.nav-backdrop{position:fixed;inset:0;background:#202a3640;backdrop-filter:blur(3px);z-index:29;width:100%;height:100%;cursor:pointer}
+.toast{white-space:normal;width:max-content;max-width:calc(100vw - 32px);text-align:center}
+@media(min-width:1800px){main{max-width:1600px}.real-fixture{padding:22px 24px;font-size:14px}.mini-probs strong{font-size:15px}.league-heading{font-size:12px}}
+@media(min-width:901px) and (max-width:1200px){.real-fixture{grid-template-columns:28px 40px minmax(0,1fr) 30px 150px;gap:8px}.real-fixture>.drawer-meta{display:none}}
+@media(max-width:900px){
+ :root{--sidebar:0px}
+ .sidebar{width:min(280px,calc(100vw - 52px));transform:translateX(-110%);transition:transform .2s;box-shadow:5px 0 30px #0001;padding:22px 16px 0}
+ .sidebar.open{transform:translateX(0)}
+ .mobile-menu{display:inline-flex}.topbar{height:64px;padding:0 24px}
+ .top-actions .icon-button{display:inline-flex}.icon-button{min-width:44px;min-height:44px}
+ .nav-item{min-height:44px}.sport-nav .nav-item{padding-top:12px;padding-bottom:12px}
+ main{padding:28px 24px}.real-fixture{grid-template-columns:28px 44px minmax(0,1fr) 32px 150px;gap:10px;font-size:12px}
+ .real-fixture>.drawer-meta{display:none}.match-time{font-size:11px}
+ .search input,select,.date-control input{font-size:16px}
+ .search,.toolbar>select,.secondary-button,.date-control{min-height:44px}
+ .secondary-button{font-size:12px}.toolbar>select{flex:1 1 200px;max-width:none}.toolbar .search{flex:2 1 240px}
+ .drawer{width:min(660px,100%)}
+ footer{padding:20px 24px}
+}
+@media(max-width:600px){
+ .topbar{padding:0 12px;height:60px}.breadcrumb{gap:6px}.top-actions{gap:6px}
+ main{padding:24px 16px}.page-heading{gap:16px;margin-bottom:22px}.page-heading h1{font-size:28px}
+ .date-control{gap:7px;padding:8px}.date-control input{width:132px;max-width:100%}
+ .toolbar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px}
+ .toolbar>select{grid-column:1/-1;width:100%;max-width:100%;padding:10px 12px}
+ .toolbar .search{width:100%;padding:10px}.toolbar .secondary-button{padding:10px;font-size:11px;gap:5px}
+ .real-fixture{grid-template-columns:30px 40px minmax(0,1fr) 30px;gap:4px 8px;padding:14px 12px;font-size:12px}
+ .real-fixture>.star-button{grid-column:1;grid-row:1}
+ .real-fixture>.match-time{grid-column:2;grid-row:1;font-size:10px}
+ .real-fixture>div:nth-child(3){grid-column:3;grid-row:1}
+ .real-fixture>.real-scores{grid-column:4;grid-row:1}
+ .real-fixture>.mini-forecast{grid-column:3/5;grid-row:2;margin-top:8px;padding:10px;min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+ .mini-probs{flex:1;justify-content:space-around;gap:10px;margin:0}.mini-probs>span{flex-direction:row;align-items:baseline;gap:5px}
+ .mini-probs strong{font-size:13px}.mini-probs small{font-size:10px}.mini-forecast>small{font-size:9px;flex-shrink:0}
+ .mini-forecast.loading,.mini-forecast.unavailable{font-size:12px;justify-content:center}
+ .mini-forecast.historical>small{margin:0}.mini-forecast.historical>strong{font-size:14px}
+ .league-heading{font-size:11px;padding:12px;align-items:flex-start}.league-count{font-size:9px;padding-top:1px}
+ .drawer{width:100%;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(24px,env(safe-area-inset-bottom))}
+ .drawer h2{font-size:23px;margin-top:12px}.drawer-toolbar{gap:8px;padding:10px 0}.drawer-toolbar .search,.drawer-toolbar select{flex-basis:100%;width:100%}
+ .market-categories{gap:7px}.market-categories .chip{font-size:11px;padding:9px 11px;min-height:44px}
+ .forecast-row,.forecast-columns{grid-template-columns:minmax(0,1fr) 70px 76px;gap:7px;padding:12px 10px}
+ .forecast-row{font-size:12px;line-height:1.6}.forecast-row>strong{font-size:13px}.history-frequency{font-size:12px}.history-frequency small{font-size:9px}
+ .forecast-columns{font-size:8px}.market-group h3{padding:12px 10px;font-size:12px}.market-group h3 span{font-size:10px}
+ .data-stat-row{grid-template-columns:minmax(0,1fr) 65px 65px;font-size:12px;padding:12px 10px;gap:8px}
+ .forecast-method{padding:12px}.forecast-method p,.forecast-method summary{font-size:12px}
+ .settings-row{padding:16px;gap:12px}.settings-row select{width:100%}
+ footer{padding:18px 16px}.empty{padding:45px 16px}.list-summary{font-size:12px}
+}
+@media(max-width:360px){
+ main{padding-inline:12px}.page-heading{flex-direction:column}.real-fixture{padding-inline:8px;grid-template-columns:26px 34px minmax(0,1fr) 24px;column-gap:5px}
+ .drawer{padding-inline:12px}.forecast-row,.forecast-columns{grid-template-columns:minmax(0,1fr) 62px 66px;gap:5px;padding-inline:8px}
+ .forecast-row{font-size:11px}.mini-probs strong{font-size:12px}.mini-forecast>small{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){.sidebar{transition:none}}
+
+.probability-filter{flex:1 0 100%;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:11px;color:#707887}.probability-input{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:7px;background:#fff;padding:0 10px;min-height:40px}.probability-input input{width:100px;min-width:0;border:0;background:transparent;outline-offset:4px;font:inherit;color:var(--text);padding:10px 0}.probability-input input::placeholder{font-size:10px;color:var(--muted)}.probability-filter button{font-size:11px;color:var(--green);min-height:44px;padding:8px 0}.probability-filter label{line-height:1.6}@media(max-width:600px){.probability-filter{gap:8px;font-size:12px}.probability-input{min-height:44px}.probability-input input{font-size:16px;width:92px}}

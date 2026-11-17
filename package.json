@@ -1,1 +1,14 @@
-{"name":"oddscope","version":"1.0.0","private":true,"description":"Explorador deportivo con escenarios de demostración","scripts":{"dev":"node server.mjs","check":"node --check dist/app.js","test":"node validate.mjs"}}
+{
+  "name": "oddscope",
+  "version": "1.3.0",
+  "private": true,
+  "description": "Partidos y mercados de Crear Apuesta de Triunfobet con cuotas y porcentajes implícitos",
+  "scripts": {
+    "dev": "node server.mjs",
+    "check": "node --check dist/live-app.js && node --check dist/forecast-ui.js && node --check server.mjs && node --check triunfobet-source.mjs",
+    "test": "node validate-data.mjs && node validate-triunfobet.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "^1.65.1"
+  }
+}

@@ -1,22 +1,23 @@
 <!doctype html>
 <html lang="es">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f8fa"><meta name="description" content="Explora deportes, partidos y probabilidades en un solo lugar. Prototipo interactivo con datos de demostración."><title>Oddscope — El deporte, en perspectiva.</title><link rel="stylesheet" href="style.css"></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f8fa"><meta name="description" content="Partidos, cuotas y porcentajes implícitos de Crear Apuesta de Triunfobet."><title>Oddscope — El deporte, en perspectiva.</title><link rel="stylesheet" href="style.css"></head>
 <body>
 <aside class="sidebar" id="sidebar">
   <a class="brand" href="#explorar" aria-label="Oddscope inicio"><span class="brand-symbol">o<span></span></span>oddscope<span class="brand-dot">.</span></a>
-  <div class="workspace"><span class="workspace-icon">O</span><div>Tu espacio de análisis<small>Una visión más clara.</small></div></div>
+  <div class="workspace"><span class="workspace-icon">O</span><div>Tu espacio de análisis</div></div>
   <div class="nav-label">DESCUBRIR</div>
-  <nav><button class="nav-item active" data-view="explorar"><i data-icon="grid"></i>Explorar<span class="nav-shortcut">⌘ K</span></button><button class="nav-item" data-view="favoritos"><i data-icon="star"></i>Mis favoritos<span class="nav-count" id="fav-count">0</span></button><button class="nav-item" data-view="comparar"><i data-icon="compare"></i>Comparador<span class="nav-count" id="compare-count">0</span></button></nav>
+  <nav><button class="nav-item active" data-view="explorar"><i data-icon="grid"></i>Partidos<span class="nav-shortcut">⌘ K</span></button><button class="nav-item" data-view="favoritos"><i data-icon="star"></i>Mis favoritos<span class="nav-count" id="fav-count">0</span></button><button class="nav-item" data-view="comparar"><i data-icon="compare"></i>Comparador<span class="nav-count" id="compare-count">0</span></button></nav>
   <div class="nav-label sport-label">DEPORTES <span id="sport-total"></span></div>
   <nav id="sport-nav"></nav>
-  <div class="sidebar-bottom"><button class="nav-item" data-view="metodologia"><i data-icon="info"></i>Cómo funciona</button><div class="profile"><span class="avatar">T</span><div>Tu espacio personal<small>Versión de demostración</small></div><span class="profile-dots">···</span></div></div>
+  <div class="sidebar-bottom"><button class="nav-item" data-view="metodologia"><i data-icon="info"></i>Metodología</button><div class="profile"><span class="avatar">T</span><div>Tu espacio personal</div><span class="profile-dots">···</span></div></div>
 </aside>
+<button id="nav-backdrop" class="nav-backdrop" aria-label="Cerrar menú" hidden></button>
 <div class="app-shell">
-  <header class="topbar"><div class="breadcrumb"><button class="icon-button mobile-menu" aria-label="Abrir menú" id="menu-button"><i data-icon="menu"></i></button><span>Workspace</span><span class="crumb-divider">/</span><strong id="crumb">Explorar</strong></div><div class="top-actions"><span class="demo-pill"><span></span> Datos de demostración</span><button class="icon-button" id="help-button" aria-label="Información de los datos"><i data-icon="info"></i></button><span class="avatar small">T</span></div></header>
+  <header class="topbar"><div class="breadcrumb"><button class="icon-button mobile-menu" aria-label="Abrir menú" id="menu-button" aria-controls="sidebar" aria-expanded="false"><i data-icon="menu"></i></button><strong id="crumb">Partidos</strong></div><div class="top-actions"><button class="icon-button" id="help-button" aria-label="Metodología"><i data-icon="info"></i></button><span class="avatar small">T</span></div></header>
   <main id="main"></main>
-  <footer><span>© 2026 Oddscope</span><span>Perspectiva estadística. Decisiones informadas.</span><button id="footer-info">Sobre los datos <span>↗</span></button></footer>
+  <footer><span>© 2026 Oddscope</span><button id="footer-info">Metodología</button></footer>
 </div>
 <div id="overlay" class="overlay" hidden></div><aside id="drawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden></aside>
 <div id="toast" class="toast" role="status"></div>
-<script src="app.js"></script>
+<link rel="stylesheet" href="data.css"><link rel="stylesheet" href="forecast.css"><link rel="stylesheet" href="responsive.css"><script src="match-data.js"></script><script src="primitives.js"></script><script src="live-app.js"></script><script src="forecast-ui.js"></script>
 </body></html>
